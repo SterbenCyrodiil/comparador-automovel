@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Car cost per month – Portugal</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#eef1f3;--surface:#fff;--ink:#14213d;--muted:#5b6678;--line:#d5dbe2;--hero:#0b3a6f;--signal:#f2b705;
+--c1:#0b5fa5;--c2:#e07a1f;--c3:#2f9e8f;--c4:#8a5cc2;--c5:#c0392b;--c6:#6b7a8f;--c7:#c9a227;--c8:#3d7a3a;--c9:#d6457f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e141c;--surface:#17202b;--ink:#e8edf3;--muted:#93a0b3;--line:#2a3644;--hero:#0a2a4f;
+--c1:#4a9be0;--c2:#f09a4a;--c3:#4cc2b2;--c4:#a98be0;--c5:#e5695b;--c6:#8c9bb0;--c7:#e0c04f;--c8:#6fbf6a;--c9:#ee7aa6}}
+:root[data-theme="dark"]{--bg:#0e141c;--surface:#17202b;--ink:#e8edf3;--muted:#93a0b3;--line:#2a3644;--hero:#0a2a4f;
+--c1:#4a9be0;--c2:#f09a4a;--c3:#4cc2b2;--c4:#a98be0;--c5:#e5695b;--c6:#8c9bb0;--c7:#e0c04f;--c8:#6fbf6a;--c9:#ee7aa6}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.1;margin:8px 0 6px;font-weight:800;letter-spacing:-.02em}
+.lede{color:var(--muted);margin:0 0 24px;max-width:60ch}
+.grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media (min-width:860px){.grid{grid-template-columns:1.1fr .9fr;align-items:start}.result{position:sticky;top:16px}}
+fieldset{border:1px solid var(--line);background:var(--surface);border-radius:10px;margin:0 0 16px;padding:14px 16px 6px}
+legend{font-weight:600;padding:0 6px}
+.row{display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:center;margin-bottom:10px}
+.row label,.row .l{font-size:.95rem}
+.row small{display:block;color:var(--muted);font-size:.8rem;line-height:1.3}
+.row a{color:var(--c1)}
+.row.chk{grid-template-columns:20px 1fr}
+.row.chk input{min-height:0;width:18px;height:18px}
+.out{font-weight:800;font-size:1.1rem;text-align:right}
+.hide{display:none!important}
+input,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:7px 9px;min-height:40px}
+input:focus-visible,select:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--c1);outline-offset:1px}
+.hero{background:var(--hero);color:#fff;border-radius:10px;padding:20px}
+.hero .lab{opacity:.8;font-size:.9rem}
+.hero .big{font-size:clamp(2.6rem,9vw,4rem);font-weight:800;line-height:1;letter-spacing:-.03em;margin:6px 0 2px;color:var(--signal)}
+.hero .sub{display:flex;gap:20px;flex-wrap:wrap;margin-top:12px;font-size:.95rem}
+.hero .sub b{display:block;font-size:1.15rem}
+.bar{display:flex;height:22px;border-radius:6px;overflow:hidden;margin:18px 0 12px;background:var(--line)}
+.bar span{display:block;height:100%;transition:width .25s}
+@media (prefers-reduced-motion:reduce){.bar span{transition:none}}
+ul.legend{list-style:none;margin:0;padding:0}
+ul.legend li{display:grid;grid-template-columns:14px 1fr auto auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+ul.legend li:last-child{border-bottom:0}
+.sw{width:14px;height:14px;border-radius:3px}
+.pct{color:var(--muted);font-size:.85rem;min-width:3ch;text-align:right}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:16px}
+.note{color:var(--muted);font-size:.85rem;margin:14px 0 0}
+.top{display:flex;justify-content:flex-end;gap:8px}
+.top button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:6px 10px;font:inherit;cursor:pointer}
+.top button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <button id="lpt" type="button" aria-pressed="false">PT</button>
+    <button id="len" type="button" aria-pressed="true">EN</button>
+    <button id="theme" type="button" data-i="theme"></button>
+  </div>
+  <h1 data-i="title"></h1>
+  <p class="lede" data-i="lede"></p>
+
+  <div class="grid">
+    <form id="f" onsubmit="return false" autocomplete="off">
+      <fieldset><legend data-i="car"></legend>
+        <div class="row"><label for="mode" data-i="mode"></label>
+          <select id="mode"><option value="cash" data-i="cash"></option><option value="loan" data-i="loan"></option><option value="lease" data-i="lease"></option></select></div>
+        <div class="row own"><label for="price" data-i="price"></label><input id="price" type="number" min="0" step="100" value="18000"></div>
+        <div class="row own"><label for="resale" data-i="resale"></label><input id="resale" type="number" min="0" step="100" value="10000"></div>
+        <div class="row own"><label for="years" data-i="years"></label><input id="years" type="number" min="0.5" step="0.5" value="5"></div>
+        <div class="row"><label for="km" data-i="km"></label><input id="km" type="number" min="1" step="500" value="12000"></div>
+      </fieldset>
+
+      <fieldset class="loan hide"><legend data-i="loanSec"></legend>
+        <div class="row"><label for="down" data-i="down"></label><input id="down" type="number" min="0" step="100" value="3000"></div>
+        <div class="row"><label for="apr" data-i="apr"></label><input id="apr" type="number" min="0" step="0.1" value="8"></div>
+        <div class="row"><label for="term" data-i="term"></label><input id="term" type="number" min="1" step="6" value="60"></div>
+        <div class="row"><span class="l" data-i="inst"></span><span class="out" id="inst">–</span></div>
+      </fieldset>
+
+      <fieldset class="lease hide"><legend data-i="leaseSec"></legend>
+        <div class="row"><label for="rent" data-i="rent"></label><input id="rent" type="number" min="0" step="5" value="420"></div>
+        <div class="row"><label for="upfront" data-i="upfront"></label><input id="upfront" type="number" min="0" step="100" value="2000"></div>
+        <div class="row"><label for="lterm" data-i="lterm"></label><input id="lterm" type="number" min="1" step="6" value="48"></div>
+        <div class="row chk"><input id="iIns" type="checkbox"><label for="iIns" data-i="iIns"></label></div>
+        <div class="row chk"><input id="iMaint" type="checkbox"><label for="iMaint" data-i="iMaint"></label></div>
+        <div class="row chk"><input id="iTax" type="checkbox"><label for="iTax" data-i="iTax"></label></div>
+      </fieldset>
+
+      <fieldset><legend data-i="fuelSec"></legend>
+        <div class="row"><label for="fuel" data-i="fuel"></label>
+          <select id="fuel"><option value="petrol" data-i="petrol"></option><option value="diesel" data-i="diesel"></option><option value="hybrid" data-i="hybrid"></option><option value="ev" data-i="ev"></option></select></div>
+        <div class="row"><label for="cons" id="consL"></label><input id="cons" type="number" min="0" step="0.1" value="6.5"></div>
+        <div class="row"><label for="fprice" id="fpL"></label><input id="fprice" type="number" min="0" step="0.01" value="1.75"></div>
+      </fieldset>
+
+      <fieldset><legend data-i="fixed"></legend>
+        <div class="row"><label for="ins" data-i="ins"></label><input id="ins" type="number" min="0" step="10" value="450"></div>
+        <div class="row"><label for="iuc" data-i="iuc"></label><input id="iuc" type="number" min="0" step="1" value="100"></div>
+        <div class="row"><label for="ipo" data-i="ipo"></label><input id="ipo" type="number" min="0" step="1" value="35"></div>
+        <div class="row"><label for="ipoN" data-i="ipoN"></label>
+          <select id="ipoN"><option value="2" data-i="y2"></option><option value="1" data-i="y1"></option></select></div>
+        <div class="row"><label for="maint" data-i="maint"></label><input id="maint" type="number" min="0" step="10" value="400"></div>
+      </fieldset>
+
+      <fieldset><legend data-i="tt"></legend>
+        <div class="row"><label for="tyre" data-i="tyre"></label><input id="tyre" type="number" min="0" step="10" value="480"></div>
+        <div class="row"><label for="tyreKm" data-i="tyreKm"></label><input id="tyreKm" type="number" min="1000" step="1000" value="40000"></div>
+        <div class="row"><label for="toll" data-i="toll"></label><input id="toll" type="number" min="0" step="1" value="20"></div>
+        <div class="row"><label for="park" data-i="park"></label><input id="park" type="number" min="0" step="1" value="30"></div>
+      </fieldset>
+    </form>
+
+    <div class="result" aria-live="polite">
+      <div class="hero">
+        <div class="lab" data-i="lab1"></div>
+        <div class="big" id="total">–</div>
+        <div class="lab" data-i="lab2"></div>
+        <div class="sub">
+          <div><b id="perKm">–</b><span data-i="perKm"></span></div>
+          <div><b id="perDay">–</b><span data-i="perDay"></span></div>
+          <div><b id="perYear">–</b><span data-i="perYear"></span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="bar" id="bar" role="img"></div>
+        <ul class="legend" id="legend"></ul>
+        <p class="note" data-i="note"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var T = {
+    en: {
+      theme:"Light / dark", title:"What does my car really cost per month?", lede:"Enter your numbers for Portugal. Everything updates as you type, and nothing leaves your device.",
+      car:"The car", mode:"How are you paying?", cash:"Cash", loan:"Car loan", lease:"Leasing / renting (ALD)",
+      price:"Purchase price (€)", resale:"Expected resale value (€)<small>What you think it sells for when you let it go</small>", years:"Years you’ll keep it", km:"Kilometres per year",
+      loanSec:"Car loan", down:"Down payment (€)", apr:"Interest rate (TAN, % per year)", term:"Loan term (months)", inst:"Monthly instalment",
+      leaseSec:"Leasing / renting", rent:"Monthly rent (€)", upfront:"Upfront payment (€)<small>Entry fee or deposit you won’t get back</small>", lterm:"Contract length (months)",
+      iIns:"Rent includes insurance", iMaint:"Rent includes servicing and tyres", iTax:"Rent includes IUC and inspection",
+      fuelSec:"Fuel or energy", fuel:"Fuel type", petrol:"Petrol", diesel:"Diesel", hybrid:"Hybrid", ev:"Electric (home charging)",
+      cons_l:"Consumption (l/100 km)", cons_e:"Consumption (kWh/100 km)", p_l:"Price per litre (€)<small>Approximate pump price, adjust to what you pay</small>", p_e:"Price per kWh (€)<small>Your home tariff, adjust to what you pay</small>",
+      fixed:"Yearly fixed costs", ins:"Insurance (€/year)", iuc:"IUC road tax (€/year)<small>Depends on registration date, engine and CO₂. <a href=\"https://www.portaldasfinancas.gov.pt\" target=\"_blank\" rel=\"noopener\">Check on Portal das Finanças</a></small>",
+      ipo:"Inspection (IPO) cost (€)", ipoN:"Inspection every<small>Cars are inspected every 2 years from year 4, then yearly from year 8</small>", y2:"2 years", y1:"1 year", maint:"Servicing and repairs (€/year)",
+      tt:"Tyres, tolls and parking", tyre:"Set of 4 tyres (€)", tyreKm:"Tyre life (km)", toll:"Tolls, e.g. Via Verde (€/month)", park:"Parking (€/month)",
+      lab1:"Your car costs you", lab2:"per month, all in", perKm:"per km", perDay:"per day", perYear:"per year",
+      note:"Depreciation isn’t money leaving your account every month, but you pay it when you sell. Loan interest is averaged over the years you keep the car. Fuel prices and IUC are estimates, so replace them with your own figures. Excludes one-off ISV and registration costs.",
+      c_dep:"Depreciation", c_fin:"Loan interest", c_rent:"Leasing / rent", c_fuel:"Fuel or energy", c_ins:"Insurance", c_iuc:"IUC road tax", c_ipo:"Inspection (IPO)", c_maint:"Servicing and repairs", c_tyre:"Tyres", c_tp:"Tolls and parking", bar:"Cost breakdown"
+    },
+    pt: {
+      theme:"Claro / escuro", title:"Quanto me custa realmente o carro por mês?", lede:"Mete os teus valores para Portugal. Tudo atualiza enquanto escreves e nada sai do teu dispositivo.",
+      car:"O carro", mode:"Como estás a pagar?", cash:"A pronto", loan:"Crédito automóvel", lease:"Leasing / aluguer (ALD)",
+      price:"Preço de compra (€)", resale:"Valor de revenda esperado (€)<small>O que achas que vale quando o venderes</small>", years:"Anos que vais ficar com ele", km:"Quilómetros por ano",
+      loanSec:"Crédito automóvel", down:"Entrada (€)", apr:"Taxa de juro (TAN, % ao ano)", term:"Prazo do crédito (meses)", inst:"Prestação mensal",
+      leaseSec:"Leasing / aluguer", rent:"Renda mensal (€)", upfront:"Pagamento inicial (€)<small>Entrada ou caução que não recuperas</small>", lterm:"Duração do contrato (meses)",
+      iIns:"A renda inclui seguro", iMaint:"A renda inclui revisões e pneus", iTax:"A renda inclui IUC e inspeção",
+      fuelSec:"Combustível ou energia", fuel:"Tipo de combustível", petrol:"Gasolina", diesel:"Gasóleo", hybrid:"Híbrido", ev:"Elétrico (carga em casa)",
+      cons_l:"Consumo (l/100 km)", cons_e:"Consumo (kWh/100 km)", p_l:"Preço por litro (€)<small>Preço aproximado na bomba, ajusta ao que pagas</small>", p_e:"Preço por kWh (€)<small>A tua tarifa em casa, ajusta ao que pagas</small>",
+      fixed:"Custos fixos anuais", ins:"Seguro (€/ano)", iuc:"IUC (€/ano)<small>Depende da data de matrícula, cilindrada e CO₂. <a href=\"https://www.portaldasfinancas.gov.pt\" target=\"_blank\" rel=\"noopener\">Vê no Portal das Finanças</a></small>",
+      ipo:"Custo da inspeção (IPO) (€)", ipoN:"Inspeção de quanto em quanto tempo<small>Os ligeiros são inspecionados de 2 em 2 anos a partir do 4.º ano e todos os anos a partir do 8.º</small>", y2:"2 anos", y1:"1 ano", maint:"Revisões e reparações (€/ano)",
+      tt:"Pneus, portagens e estacionamento", tyre:"Conjunto de 4 pneus (€)", tyreKm:"Duração dos pneus (km)", toll:"Portagens, ex. Via Verde (€/mês)", park:"Estacionamento (€/mês)",
+      lab1:"O teu carro custa-te", lab2:"por mês, tudo incluído", perKm:"por km", perDay:"por dia", perYear:"por ano",
+      note:"A desvalorização não sai da tua conta todos os meses, mas pagas por ela quando vendes. Os juros do crédito são distribuídos pelos anos em que ficas com o carro. Os preços dos combustíveis e o IUC são estimativas, por isso troca pelos teus valores. Não inclui ISV nem custos de registo, que são pagos uma só vez.",
+      c_dep:"Desvalorização", c_fin:"Juros do crédito", c_rent:"Leasing / renda", c_fuel:"Combustível ou energia", c_ins:"Seguro", c_iuc:"IUC", c_ipo:"Inspeção (IPO)", c_maint:"Revisões e reparações", c_tyre:"Pneus", c_tp:"Portagens e estacionamento", bar:"Repartição dos custos"
+    }
+  };
+  var fuels = { petrol:{c:6.5,p:1.75}, diesel:{c:5.5,p:1.65}, hybrid:{c:4.8,p:1.75}, ev:{c:16,p:0.2} };
+  var cats = [["dep","--c1"],["fin","--c9"],["fuel","--c2"],["ins","--c3"],["iuc","--c4"],["ipo","--c5"],["maint","--c6"],["tyre","--c7"],["tp","--c8"]];
+  var lang = "pt";
+  try { lang = localStorage.getItem("lang") || "pt"; } catch (e) {}
+
+  var money = function (n, d) {
+    try { return new Intl.NumberFormat(lang === "pt" ? "pt-PT" : "en-GB", { style:"currency", currency:"EUR", minimumFractionDigits:d||0, maximumFractionDigits:d||0 }).format(n); }
+    catch (e) { return "€" + n.toFixed(d||0); }
+  };
+  var val = function (id) { var v = parseFloat($(id).value); return isFinite(v) && v >= 0 ? v : 0; };
+  var on = function (id) { return $(id).checked; };
+
+  function applyLang() {
+    var t = T[lang]; document.documentElement.lang = lang;
+    document.title = t.title;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i]"), function (el) { el.innerHTML = t[el.getAttribute("data-i")]; });
+    var ev = $("fuel").value === "ev";
+    $("consL").innerHTML = ev ? t.cons_e : t.cons_l;
+    $("fpL").innerHTML = ev ? t.p_e : t.p_l;
+    $("lpt").setAttribute("aria-pressed", lang === "pt"); $("len").setAttribute("aria-pressed", lang === "en");
+    $("bar").setAttribute("aria-label", t.bar);
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    calc();
+  }
+
+  function calc() {
+    var t = T[lang], mode = $("mode").value;
+    Array.prototype.forEach.call(document.querySelectorAll(".own"), function (e) { e.classList.toggle("hide", mode === "lease"); });
+    document.querySelector(".loan").classList.toggle("hide", mode !== "loan");
+    document.querySelector(".lease").classList.toggle("hide", mode !== "lease");
+
+    var years = Math.max(val("years"), 0.5), km = Math.max(val("km"), 1), H = Math.round(years * 12), m = {};
+    m.dep = mode === "lease" ? 0 : Math.max(val("price") - val("resale"), 0) / (years * 12);
+    m.fin = 0;
+    if (mode === "loan") {
+      var P = Math.max(val("price") - val("down"), 0), n = Math.max(Math.round(val("term")), 1), r = val("apr") / 1200;
+      var pay = r > 0 ? P * r / (1 - Math.pow(1 + r, -n)) : P / n, bal = P, paid = 0;
+      for (var k = 1; k <= Math.min(n, H); k++) { var i = bal * r; paid += i; bal -= pay - i; }
+      m.fin = paid / H; $("inst").textContent = money(pay, 2);
+    } else if (mode === "lease") {
+      m.fin = val("rent") + val("upfront") / Math.max(val("lterm"), 1);
+    }
+    m.fuel = (km / 100 * val("cons") * val("fprice")) / 12;
+    m.ins = mode === "lease" && on("iIns") ? 0 : val("ins") / 12;
+    m.iuc = mode === "lease" && on("iTax") ? 0 : val("iuc") / 12;
+    m.ipo = mode === "lease" && on("iTax") ? 0 : (val("ipo") / parseFloat($("ipoN").value)) / 12;
+    var svc = mode === "lease" && on("iMaint");
+    m.maint = svc ? 0 : val("maint") / 12;
+    m.tyre = svc ? 0 : (val("tyre") / Math.max(val("tyreKm"), 1)) * km / 12;
+    m.tp = val("toll") + val("park");
+
+    var total = 0; cats.forEach(function (c) { total += m[c[0]]; });
+    $("total").textContent = money(total);
+    $("perKm").textContent = money(total * 12 / km, 2);
+    $("perDay").textContent = money(total * 12 / 365, 2);
+    $("perYear").textContent = money(total * 12);
+
+    var bar = "", leg = "";
+    cats.forEach(function (c) {
+      var key = c[0], name = t[key === "fin" ? (mode === "lease" ? "c_rent" : "c_fin") : "c_" + key];
+      if (key === "fin" && mode === "cash") return;
+      if (key === "dep" && mode === "lease") return;
+      var p = total > 0 ? m[key] / total * 100 : 0;
+      bar += '<span style="width:' + p + '%;background:var(' + c[1] + ')" title="' + name + '"></span>';
+      leg += '<li><span class="sw" style="background:var(' + c[1] + ')"></span><span>' + name + '</span><strong>' + money(m[key]) + '</strong><span class="pct">' + Math.round(p) + '%</span></li>';
+    });
+    $("bar").innerHTML = bar; $("legend").innerHTML = leg;
+  }
+
+  $("fuel").addEventListener("change", function () {
+    var f = fuels[this.value]; $("cons").value = f.c; $("fprice").value = f.p; applyLang();
+  });
+  $("f").addEventListener("input", calc);
+  $("f").addEventListener("change", calc);
+  $("lpt").addEventListener("click", function () { lang = "pt"; applyLang(); });
+  $("len").addEventListener("click", function () { lang = "en"; applyLang(); });
+  $("theme").addEventListener("click", function () {
+    var r = document.documentElement, dark = getComputedStyle(r).getPropertyValue("--bg").trim() === "#0e141c";
+    r.setAttribute("data-theme", dark ? "light" : "dark");
+  });
+  applyLang();
+})();
+</script>
+</body>
+</html>
