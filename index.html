@@ -295,6 +295,11 @@
       margin-top: 16px
     }
 
+    .panel h2 {
+      font-size: 1.1rem;
+      margin: 0 0 12px
+    }
+
     .note {
       color: var(--muted);
       font-size: .85rem;
@@ -424,6 +429,35 @@
           <div class="row"><label for="park" data-i="park"></label><input id="park" type="number" min="0" step="1"
               value="30"></div>
         </fieldset>
+
+        <fieldset>
+          <legend data-i="transitSec"></legend>
+          <div class="row"><label for="transitMode" data-i="transitMode"></label>
+            <select id="transitMode">
+              <option value="pass" data-i="transitPassOption"></option>
+              <option value="trip" data-i="transitTripOption"></option>
+            </select>
+          </div>
+          <div class="row transit-pass"><label for="transit" data-i="transitPass"></label><input id="transit" type="number"
+              min="0" step="1" value="40"></div>
+          <div class="row transit-trip hide"><label for="transitTrips" data-i="transitTrips"></label><input id="transitTrips"
+              type="number" min="0" step="1" value="2"></div>
+          <div class="row transit-trip hide"><label for="transitDays" data-i="transitDays"></label><input id="transitDays"
+              type="number" min="0" step="1" value="20"></div>
+          <div class="row transit-trip hide"><label for="transitTripPrice" data-i="transitTripPrice"></label><input
+              id="transitTripPrice" type="number" min="0" step="0.05" value="2"></div>
+          <div class="row"><label for="transitSubsidy" data-i="transitSubsidy"></label><input id="transitSubsidy"
+              type="number" min="0" step="1" value="0"></div>
+          <div class="row"><label for="transitExtras" data-i="transitExtras"></label><input id="transitExtras" type="number"
+              min="0" step="5" value="0"></div>
+          <p class="note" data-i="transitHint"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i="carPeopleSec"></legend>
+          <div class="row"><label for="carPeople" data-i="carPeople"></label><input id="carPeople" type="number" min="1"
+              step="1" value="1"></div>
+        </fieldset>
       </form>
 
       <div class="result" aria-live="polite">
@@ -441,6 +475,15 @@
           <div class="bar" id="bar" role="img"></div>
           <ul class="legend" id="legend"></ul>
           <p class="note" data-i="note"></p>
+        </div>
+        <div class="panel">
+          <h2 data-i="transitTitle"></h2>
+          <div class="row"><span class="l" data-i="transitCar"></span><strong class="out" id="transitCarValue">–</strong></div>
+          <div class="row"><span class="l" data-i="transitPublic"></span><strong class="out" id="transitPublicValue">–</strong></div>
+          <div class="row"><span class="l" data-i="transitAnnual"></span><strong class="out" id="transitAnnualValue">–</strong></div>
+          <div class="row"><span class="l" data-i="transitPercent"></span><strong class="out" id="transitPercentValue">–</strong></div>
+          <div class="row"><span class="l" data-i="carPerPerson"></span><strong class="out" id="carPerPersonValue">–</strong></div>
+          <p class="note" id="transitMessage"></p>
         </div>
       </div>
     </div>
@@ -462,8 +505,11 @@
           fixed: "Yearly fixed costs", ins: "Insurance (€/year)", iuc: "IUC road tax (€/year)<small>Depends on registration date, engine and CO₂. <a href=\"https://www.portaldasfinancas.gov.pt\" target=\"_blank\" rel=\"noopener\">Check on Portal das Finanças</a></small>",
           ipo: "Inspection (IPO) cost (€)", ipoN: "Inspection every<small>Cars are inspected every 2 years from year 4, then yearly from year 8</small>", y2: "2 years", y1: "1 year", maint: "Servicing and repairs (€/year)",
           tt: "Tyres, tolls and parking", tyre: "Set of 4 tyres (€)", tyreKm: "Tyre life (km)", toll: "Tolls, e.g. Via Verde (€/month)", park: "Parking (€/month)",
+          transitSec: "Public transport", transitMode: "How do you pay?", transitPassOption: "Monthly pass", transitTripOption: "Pay per trip", transitPass: "Monthly pass (€)", transitTrips: "Trips per day", transitDays: "Transit days per month", transitTripPrice: "Price per trip (€)", transitSubsidy: "Employer/student subsidy (€/month)", transitExtras: "Taxis or ride-hailing (€/month)", transitHint: "Adjust this to your local pass or ticket price. Add subsidies and occasional rides for a realistic comparison.",
+          carPeopleSec: "Car occupancy", carPeople: "People using the car",
           lab1: "Your car costs you", lab2: "per month, all in", perKm: "per km", perDay: "per day", perYear: "per year",
           note: "Depreciation isn’t money leaving your account every month, but you pay it when you sell. Loan interest is averaged over the years you keep the car. Fuel prices and IUC are estimates, so replace them with your own figures. Excludes one-off ISV and registration costs.",
+          transitTitle: "Car vs public transport", transitCar: "Car per month", transitPublic: "Public transport per month", transitAnnual: "Annual difference", transitPercent: "Public transport saving", carPerPerson: "Car per person", transitSave: "Public transport could save you", transitMore: "Public transport would cost you more", transitSame: "Both options cost about the same",
           c_dep: "Depreciation", c_fin: "Loan interest", c_rent: "Leasing / rent", c_fuel: "Fuel or energy", c_ins: "Insurance", c_iuc: "IUC road tax", c_ipo: "Inspection (IPO)", c_maint: "Servicing and repairs", c_tyre: "Tyres", c_tp: "Tolls and parking", bar: "Cost breakdown"
         },
         pt: {
@@ -478,8 +524,11 @@
           fixed: "Custos fixos anuais", ins: "Seguro (€/ano)", iuc: "IUC (€/ano)<small>Depende da data de matrícula, cilindrada e CO₂. <a href=\"https://www.portaldasfinancas.gov.pt\" target=\"_blank\" rel=\"noopener\">Vê no Portal das Finanças</a></small>",
           ipo: "Custo da inspeção (IPO) (€)", ipoN: "Inspeção de quanto em quanto tempo<small>Os ligeiros são inspecionados de 2 em 2 anos a partir do 4.º ano e todos os anos a partir do 8.º</small>", y2: "2 anos", y1: "1 ano", maint: "Revisões e reparações (€/ano)",
           tt: "Pneus, portagens e estacionamento", tyre: "Conjunto de 4 pneus (€)", tyreKm: "Duração dos pneus (km)", toll: "Portagens, ex. Via Verde (€/mês)", park: "Estacionamento (€/mês)",
+          transitSec: "Transportes públicos", transitMode: "Como pagas?", transitPassOption: "Passe mensal", transitTripOption: "Pagamento por viagem", transitPass: "Passe mensal (€)", transitTrips: "Viagens por dia", transitDays: "Dias de transporte por mês", transitTripPrice: "Preço por viagem (€)", transitSubsidy: "Comparticipação da empresa/estudante (€/mês)", transitExtras: "Táxis ou TVDE (€/mês)", transitHint: "Ajusta ao passe ou preço por viagem da tua zona. Inclui comparticipações e viagens ocasionais para uma comparação realista.",
+          carPeopleSec: "Ocupação do carro", carPeople: "Pessoas que usam o carro",
           lab1: "O teu carro custa-te", lab2: "por mês, tudo incluído", perKm: "por km", perDay: "por dia", perYear: "por ano",
           note: "A desvalorização não sai da tua conta todos os meses, mas pagas por ela quando vendes. Os juros do crédito são distribuídos pelos anos em que ficas com o carro. Os preços dos combustíveis e o IUC são estimativas, por isso troca pelos teus valores. Não inclui ISV nem custos de registo, que são pagos uma só vez.",
+          transitTitle: "Carro vs transportes públicos", transitCar: "Carro por mês", transitPublic: "Transportes públicos por mês", transitAnnual: "Diferença anual", transitPercent: "Poupança nos transportes públicos", carPerPerson: "Carro por pessoa", transitSave: "Os transportes públicos podem poupar-te", transitMore: "Os transportes públicos custariam mais", transitSame: "As duas opções custam praticamente o mesmo",
           c_dep: "Desvalorização", c_fin: "Juros do crédito", c_rent: "Leasing / renda", c_fuel: "Combustível ou energia", c_ins: "Seguro", c_iuc: "IUC", c_ipo: "Inspeção (IPO)", c_maint: "Revisões e reparações", c_tyre: "Pneus", c_tp: "Portagens e estacionamento", bar: "Repartição dos custos"
         }
       };
@@ -513,6 +562,9 @@
         Array.prototype.forEach.call(document.querySelectorAll(".own"), function (e) { e.classList.toggle("hide", mode === "lease"); });
         document.querySelector(".loan").classList.toggle("hide", mode !== "loan");
         document.querySelector(".lease").classList.toggle("hide", mode !== "lease");
+        var transitByTrip = $("transitMode").value === "trip";
+        document.querySelector(".transit-pass").classList.toggle("hide", transitByTrip);
+        Array.prototype.forEach.call(document.querySelectorAll(".transit-trip"), function (e) { e.classList.toggle("hide", !transitByTrip); });
 
         var years = Math.max(val("years"), 0.5), km = Math.max(val("km"), 1), H = Math.round(years * 12), m = {};
         m.dep = mode === "lease" ? 0 : Math.max(val("price") - val("resale"), 0) / (years * 12);
@@ -539,6 +591,22 @@
         $("perKm").textContent = money(total * 12 / km, 2);
         $("perDay").textContent = money(total * 12 / 365, 2);
         $("perYear").textContent = money(total * 12);
+
+        var transitBase = transitByTrip
+          ? val("transitTrips") * val("transitDays") * val("transitTripPrice")
+          : val("transit");
+        var transit = Math.max(transitBase - val("transitSubsidy"), 0) + val("transitExtras");
+        var difference = total - transit, carPeople = Math.max(Math.round(val("carPeople")), 1);
+        $("transitCarValue").textContent = money(total);
+        $("transitPublicValue").textContent = money(transit);
+        $("transitAnnualValue").textContent = money(Math.abs(difference) * 12);
+        $("transitPercentValue").textContent = total > 0 && difference > 0 ? Math.round(difference / total * 100) + "%" : "–";
+        $("carPerPersonValue").textContent = money(total / carPeople);
+        $("transitMessage").textContent = Math.abs(difference) < 0.5
+          ? t.transitSame
+          : difference > 0
+            ? t.transitSave + " " + money(difference) + " " + (lang === "pt" ? "por mês." : "per month.") + " " + (lang === "pt" ? "No ano:" : "Per year:") + " " + money(difference * 12) + "."
+            : t.transitMore + " " + money(-difference) + " " + (lang === "pt" ? "por mês." : "per month.") + " " + (lang === "pt" ? "No ano:" : "Per year:") + " " + money(-difference * 12) + ".";
 
         var bar = "", leg = "";
         cats.forEach(function (c) {
